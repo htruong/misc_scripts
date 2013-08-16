@@ -154,7 +154,7 @@ int main(int argc, char **argv)
 	struct evhttp *httpd;
 	event_init();
 	httpd = evhttp_start(argv[argc-2], atoi(argv[argc-1]));
-	evhttp_set_cb(httpd, "/request_sys", sys_handler, NULL); 
+	evhttp_set_cb(httpd, "/request_sys/", sys_handler, NULL); 
 /* Set a callback for all other requests. */
 	evhttp_set_gencb(httpd, notfound_hander, NULL);
 event_dispatch();    /* Not reached in this code as it is now. */
