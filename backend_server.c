@@ -48,6 +48,7 @@ int exec(char* cmd, char * ret, int max) {
     int ret_val = 0;
     if (!pipe) ret_val = 0;
     int max_remaining = max;
+    ret[0] = 0;
     while (!feof(pipe)) {
     	max_remaining = max - strlen(ret) - 1;
     	if (fgets(&ret[strlen(ret)], max_remaining, pipe) == NULL) {
