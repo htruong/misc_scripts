@@ -120,7 +120,7 @@ void sys_handler(struct evhttp_request *req, void *arg)
 
 
 	if (strncmp(_get_chars(req, "cmd", ""),"zing", 50) == 0) {
-		sprintf(cmd, "/bin/bash -c 'zing_json_fetcher.sh \"%s\" %d'", _get_chars(req, "artist", ""), _get_int(req, "page", 1) );
+		sprintf(cmd, "/bin/bash -c 'timeout 5 zing_json_fetcher.sh \"%s\" %d'", _get_chars(req, "artist", ""), _get_int(req, "page", 1) );
     raw_output = 1;
 	} else {
 		valid_cmd = 0;
