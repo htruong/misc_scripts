@@ -19,7 +19,7 @@ done
 }
 
 echo -en "#EXTM3U\n\n"
-for i in {1..5}
+for i in {1..3}
 do
   dl_nonprem $q $i
 done
