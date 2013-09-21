@@ -146,6 +146,11 @@ void sys_handler(struct evhttp_request *req, void *arg)
 		timeout = 60;
 		raw_output = 1;
 		needs_escaped = 0;
+	} else if (strncmp(_get_chars(req, "cmd", ""),"pls", 50) == 0) {
+		sprintf(cmd, "zing_pls_fetcher.sh \"%s\"", _get_chars(req, "artist", ""));
+		timeout = 60;
+		raw_output = 1;
+		needs_escaped = 0;
 	} else {
 		valid_cmd = 0;
 	}
