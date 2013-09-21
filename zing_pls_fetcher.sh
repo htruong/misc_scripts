@@ -25,7 +25,7 @@ do
   dl_nonprem $q $i
 done
 
-counter=`wc -l /tmp/$rnd`
+counter=`wc -l /tmp/zing_$rnd | cut -d" " -f1`
 echo -en "NumberOfEntries=$counter\n"
 
 counter=1
@@ -36,5 +36,6 @@ while read line; do
   ((counter++))
 done < /tmp/zing_$rnd
 
+echo -en "Version=2\n"
 
 rm /tmp/zing_$rnd

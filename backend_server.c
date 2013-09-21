@@ -134,19 +134,23 @@ void sys_handler(struct evhttp_request *req, void *arg)
 	buf = evbuffer_new();
 	if (buf == NULL)
 		err(1, "failed to create response buffer");
-	evhttp_add_header(evhttp_request_get_output_headers(req),
-		"Content-Type", "text/plain");
 
 	if (strncmp(_get_chars(req, "cmd", ""),"zing", 50) == 0) {
+	evhttp_add_header(evhttp_request_get_output_headers(req),
+			"Content-Type", "text/javascript");
 		sprintf(cmd, "zing_json_fetcher.sh \"%s\" %d", _get_chars(req, "artist", ""), _get_int(req, "page", 1) );
 		timeout = 10;
 		raw_output = 1;
 	} else if (strncmp(_get_chars(req, "cmd", ""),"m3u", 50) == 0) {
+		evhttp_add_header(evhttp_request_get_output_headers(req),
+			"Content-Type", "application/x-mpegurl");
 		sprintf(cmd, "zing_m3u_fetcher.sh \"%s\"", _get_chars(req, "artist", ""));
 		timeout = 60;
 		raw_output = 1;
 		needs_escaped = 0;
 	} else if (strncmp(_get_chars(req, "cmd", ""),"pls", 50) == 0) {
+		evhttp_add_header(evhttp_request_get_output_headers(req),
+			"Content-Type", "audio/x-scpls");
 		sprintf(cmd, "zing_pls_fetcher.sh \"%s\"", _get_chars(req, "artist", ""));
 		timeout = 60;
 		raw_output = 1;
