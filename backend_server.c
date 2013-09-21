@@ -139,7 +139,7 @@ void sys_handler(struct evhttp_request *req, void *arg)
 
 	if (strncmp(_get_chars(req, "cmd", ""),"zing", 50) == 0) {
 		sprintf(cmd, "zing_json_fetcher.sh \"%s\" %d", _get_chars(req, "artist", ""), _get_int(req, "page", 1) );
-		timeout = 5;
+		timeout = 10;
 		raw_output = 1;
 	} else if (strncmp(_get_chars(req, "cmd", ""),"m3u", 50) == 0) {
 		sprintf(cmd, "zing_m3u_fetcher.sh \"%s\"", _get_chars(req, "artist", ""));
