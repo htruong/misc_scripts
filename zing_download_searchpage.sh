@@ -8,10 +8,12 @@ q=`echo ${1} | vietstripper | sed -e 's/ /+/'`
 
 
 function dl_song {
-	artistS=`echo "$2" | vietstripper`
-	titS=`echo "$3" | vietstripper`
+	tmptit=`echo "$3" | sed 's/[ \t]*$//'`
+	tmpart=`echo "$2" | sed 's/[ \t]*$//'`
+	artistS=`echo "$tmpart" | vietstripper`
+	titS=`echo "$tmptit" | vietstripper`
 	destfn=`echo "${artistS} - ${titS}.mp3"`
-	echo "**** Getting $1 --> ${destfn} [$2; $3] ***"
+	echo "**** Getting $1 --> ${destfn} [$tmpart; $tmptit] ***"
 	curl -L -o "${destfn}" "${1}"
 
 	echo "Clearing ID3 shit..."
